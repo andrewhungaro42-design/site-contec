@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Fredoka One', cursive;
+  --font-body: 'Nunito', sans-serif;
+
+  --color-primary: #3d8fd1;
+  --color-primary-dark: #2e6fa3;
+  --color-secondary: #4db870;
+  --color-secondary-dark: #3a9458;
+  --color-accent: #f5a623;
+  --color-accent-dark: #d4891a;
+  --color-ong-dark: #1a1a2e;
+  --color-muted-bg: #f0f4ff;
+}
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: #1a1a2e;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka One', cursive;
+    font-weight: 400;
+  }
+}
