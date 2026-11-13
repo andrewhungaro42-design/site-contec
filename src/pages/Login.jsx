@@ -98,9 +98,6 @@ export default function Login() {
           </Link>
         </p>
 
-        <p className="text-center text-xs" style={{ color: '#9ca3af' }}>
-          * Ambiente de demonstração: as contas ficam salvas apenas neste navegador.
-        </p>
       </form>
     </AuthLayout>
   )
