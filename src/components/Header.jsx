@@ -27,12 +27,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    if (!menuOpen) return
-
-    const timer = window.setTimeout(() => setMenuOpen(false), 0)
-    return () => window.clearTimeout(timer)
-  }, [location.pathname, menuOpen])
+  const closeMenu = () => setMenuOpen(false)
 
   // Fecha o menu do usuário ao clicar fora dele
   useEffect(() => {
@@ -65,7 +60,7 @@ export default function Header() {
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 no-underline">
+        <Link to="/" className="flex items-center gap-3 no-underline" onClick={closeMenu}>
           <img
             src={logoImg}
             alt="Logo Sonho de um Menino"
@@ -188,7 +183,8 @@ export default function Header() {
 
         {/* Mobile Hamburger */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen(open => !open)}
+          aria-expanded={menuOpen}
           className="lg:hidden p-2 rounded-xl transition-colors"
           style={{ color: '#1a1a2e' }}
           aria-label="Menu"
@@ -218,6 +214,7 @@ export default function Header() {
               <Link
                 key={to}
                 to={to}
+                onClick={closeMenu}
                 className="px-4 py-3 rounded-xl text-sm font-semibold no-underline transition-colors"
                 style={{
                   color: isActive(to) ? '#3d8fd1' : '#1a1a2e',
@@ -260,6 +257,7 @@ export default function Header() {
                 <div className="grid grid-cols-2 gap-2">
                   <Link
                     to="/login"
+                    onClick={closeMenu}
                     className="px-4 py-3 rounded-xl text-sm font-bold text-center no-underline"
                     style={{ color: '#3d8fd1', backgroundColor: '#f0f4ff' }}
                   >
@@ -267,6 +265,7 @@ export default function Header() {
                   </Link>
                   <Link
                     to="/registro"
+                    onClick={closeMenu}
                     className="px-4 py-3 rounded-xl text-sm font-bold text-center no-underline"
                     style={{ color: '#3d8fd1', border: '1.5px solid #3d8fd1' }}
                   >
@@ -278,6 +277,7 @@ export default function Header() {
 
             <Link
               to="/contato"
+              onClick={closeMenu}
               className="mt-1 px-4 py-3 rounded-xl text-sm font-bold text-white text-center no-underline"
               style={{ backgroundColor: '#3d8fd1' }}
             >
