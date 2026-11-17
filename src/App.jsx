@@ -8,6 +8,7 @@ import ProjetosFuturos from './pages/ProjetosFuturos'
 import Contato from './pages/Contato'
 import Login from './pages/Login'
 import Registro from './pages/Registro'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
               <Route path="/contato" element={<Contato />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registro" element={<Registro />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />
