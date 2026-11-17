@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import heroImg from '../assets/GraphicPlaceholder.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
 import pixLogo from '../assets/PixLogo.png'
@@ -41,6 +41,13 @@ const missions = [
 
 export default function Home() {
   const [copied, setCopied] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollToDonation) {
+      document.getElementById('doacao')?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [location.key, location.state])
 
   const handleCopy = async () => {
     try {
@@ -108,7 +115,8 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
-                to="/contato"
+                to="/"
+                state={{ scrollToDonation: true }}
                 className="px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-base font-bold no-underline transition-all duration-200 text-center"
                 style={{ background: '#f5a623', color: '#1a1a2e' }}
                 onMouseEnter={e => (e.currentTarget.style.background = '#d4891a')}
@@ -217,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* ─── DONATION ─── */}
-      <section className="bg-white py-14 sm:py-20">
+      <section id="doacao" className="scroll-mt-16 bg-white py-14 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-14">
             <h2

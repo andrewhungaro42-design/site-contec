@@ -171,7 +171,8 @@ export default function Header() {
           </div>
 
           <Link
-            to="/contato"
+            to="/"
+            state={{ scrollToDonation: true }}
             className="ml-2 px-5 py-2 rounded-xl text-sm font-bold text-white transition-all duration-200 no-underline"
             style={{ backgroundColor: '#3d8fd1' }}
             onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#2e6fa3')}
@@ -276,7 +277,8 @@ export default function Header() {
             </div>
 
             <Link
-              to="/contato"
+              to="/"
+              state={{ scrollToDonation: true }}
               onClick={closeMenu}
               className="mt-1 px-4 py-3 rounded-xl text-sm font-bold text-white text-center no-underline"
               style={{ backgroundColor: '#3d8fd1' }}
