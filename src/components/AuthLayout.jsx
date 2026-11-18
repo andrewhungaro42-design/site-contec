@@ -17,7 +17,6 @@ export default function AuthLayout({ title, subtitle, gradient, children }) {
         <div className="max-w-4xl mx-auto text-center relative z-10 pb-4">
           <h1
             className="text-4xl sm:text-5xl md:text-6xl mb-3"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
           >
             {title}
           </h1>
@@ -35,10 +34,7 @@ export default function AuthLayout({ title, subtitle, gradient, children }) {
 
       {/* ─── CARD ─── */}
       <section className="px-4 pt-4 pb-16 sm:pb-24">
-        <div
-          className="max-w-md mx-auto rounded-3xl p-6 sm:p-8"
-          style={{ backgroundColor: '#f0f4ff' }}
-        >
+        <div className="surface-muted max-w-md mx-auto rounded-3xl p-6 sm:p-8">
           {children}
         </div>
       </section>

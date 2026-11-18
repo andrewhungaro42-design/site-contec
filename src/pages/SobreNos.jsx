@@ -43,10 +43,7 @@ export default function SobreNos() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4">
             Quem Somos
           </h1>
           <p className="text-base sm:text-xl italic" style={{ color: 'rgba(255,255,255,0.75)' }}>
@@ -66,17 +63,14 @@ export default function SobreNos() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-start">
             <div>
-              <h2
-                className="text-3xl sm:text-4xl md:text-5xl mb-6 sm:mb-8"
-                style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-              >
+              <h2 className="section-title mb-6 text-3xl sm:mb-8 sm:text-4xl md:text-5xl">
                 Nossa{' '}
-                <span style={{ color: '#3d8fd1' }}>História</span>
+                <span className="text-primary">História</span>
               </h2>
 
-              <div className="flex flex-col gap-4 sm:gap-5 text-base leading-relaxed" style={{ color: '#4b5563' }}>
+              <div className="text-body flex flex-col gap-4 text-base leading-relaxed sm:gap-5">
                 <p>
-                  A ONG <strong style={{ color: '#1a1a2e' }}>Sonho de um Menino</strong> nasceu no coração de
+                  A ONG <strong className="text-ong-dark">Sonho de um Menino</strong> nasceu no coração de
                   Juiz de Fora com o propósito claro de transformar realidades e estender a mão
                   a quem mais precisa.
                 </p>
@@ -93,18 +87,12 @@ export default function SobreNos() {
             </div>
 
             {/* Missão card */}
-            <div
-              className="rounded-3xl p-6 sm:p-10 text-center shadow-sm"
-              style={{ backgroundColor: '#f0f4ff' }}
-            >
+            <div className="surface-muted rounded-3xl p-6 text-center shadow-sm sm:p-10">
               <div className="text-5xl sm:text-6xl mb-4 sm:mb-5">💙</div>
-              <h3
-                className="text-2xl sm:text-3xl mb-3 sm:mb-4"
-                style={{ fontFamily: "'Fredoka One', cursive", color: '#3d8fd1' }}
-              >
+              <h3 className="text-primary mb-3 text-2xl sm:mb-4 sm:text-3xl">
                 Nossa Missão
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#4b5563' }}>
+              <p className="text-body text-sm leading-relaxed sm:text-base">
                 Promover a dignidade humana e o alívio da vulnerabilidade social por meio de
                 campanhas ativas e contínuas de arrecadação e distribuição de alimentos, roupas,
                 brinquedos e itens de primeira necessidade.
@@ -115,16 +103,13 @@ export default function SobreNos() {
       </section>
 
       {/* ─── O QUE NOS MOVE ─── */}
-      <section className="py-14 sm:py-20" style={{ backgroundColor: '#f0f4ff' }}>
+      <section className="surface-muted py-14 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-14">
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-            >
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
               O Que Nos Move
             </h2>
-            <p className="mt-3 text-base sm:text-lg" style={{ color: '#6b7280' }}>
+            <p className="text-muted mt-3 text-base sm:text-lg">
               Os pilares que guiam cada ação da nossa ONG
             </p>
           </div>
@@ -133,19 +118,13 @@ export default function SobreNos() {
             {valores.map(({ icon, title, desc, color }) => (
               <div
                 key={title}
-                className="rounded-3xl p-6 sm:p-8 text-center shadow-sm transition-shadow duration-200"
-                style={{ backgroundColor: '#ffffff' }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.10)')}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = '')}
+                className="card-interactive rounded-3xl bg-white p-6 text-center shadow-sm sm:p-8"
               >
                 <div className="text-4xl sm:text-5xl mb-4 sm:mb-5">{icon}</div>
-                <h3
-                  className="text-xl sm:text-2xl mb-2 sm:mb-3"
-                  style={{ fontFamily: "'Fredoka One', cursive", color }}
-                >
+                <h3 className="mb-2 text-xl sm:mb-3 sm:text-2xl" style={{ color }}>
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#6b7280' }}>
+                <p className="text-muted text-sm leading-relaxed">
                   {desc}
                 </p>
               </div>
@@ -158,13 +137,10 @@ export default function SobreNos() {
       <section className="bg-white py-14 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-14">
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-            >
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
               Quem Faz Acontecer
             </h2>
-            <p className="mt-3 text-base sm:text-lg" style={{ color: '#6b7280' }}>
+            <p className="text-muted mt-3 text-base sm:text-lg">
               As pessoas que dedicam seu tempo e amor a essa causa
             </p>
           </div>
@@ -182,13 +158,10 @@ export default function SobreNos() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3
-                  className="text-xl sm:text-3xl mb-1"
-                  style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-                >
+                <h3 className="section-title mb-1 text-xl sm:text-3xl">
                   {name}
                 </h3>
-                <p className="font-bold text-sm sm:text-base" style={{ color: '#3d8fd1' }}>
+                <p className="text-primary text-sm font-bold sm:text-base">
                   {role}
                 </p>
               </div>
@@ -203,10 +176,7 @@ export default function SobreNos() {
         style={{ background: 'linear-gradient(135deg, #3d8fd1 0%, #2e6fa3 100%)' }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl mb-4"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
-          >
+          <h2 className="mb-4 text-3xl sm:text-4xl md:text-5xl">
             Como Ajudar
           </h2>
           <p className="text-base sm:text-lg mb-8 sm:mb-12" style={{ color: 'rgba(255,255,255,0.75)' }}>
@@ -267,10 +237,7 @@ export default function SobreNos() {
 
           <Link
             to="/contato"
-            className="inline-block mt-8 sm:mt-10 px-7 sm:px-10 py-3 sm:py-4 rounded-2xl font-bold no-underline transition-all duration-200"
-            style={{ backgroundColor: '#f5a623', color: '#1a1a2e' }}
-            onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#d4891a')}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#f5a623')}
+            className="button-accent inline-block mt-8 rounded-2xl px-7 py-3 font-bold no-underline sm:mt-10 sm:px-10 sm:py-4"
           >
             Ver Mais Formas de Ajudar →
           </Link>
