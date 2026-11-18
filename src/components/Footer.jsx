@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import logoImg from '../assets/LogoOriginal.png'
+import { navLinks } from '../navigation'
 
 export default function Footer() {
   return (
@@ -27,12 +28,7 @@ export default function Footer() {
               Páginas
             </h4>
             <ul className="flex flex-col gap-2 sm:gap-3">
-              {[
-                { to: '/', label: 'Início' },
-                { to: '/sobre', label: 'Sobre Nós' },
-                { to: '/projetos', label: 'Projetos Futuros' },
-                { to: '/contato', label: 'Contato' },
-              ].map(({ to, label }) => (
+              {navLinks.map(({ to, label }) => (
                 <li key={to}>
                   <Link
                     to={to}

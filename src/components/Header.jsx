@@ -2,13 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoImg from '../assets/LogoOriginal.png'
 import { useAuth } from '../context/auth-context'
-
-const navLinks = [
-  { to: '/', label: 'Início' },
-  { to: '/sobre', label: 'Sobre Nós' },
-  { to: '/projetos', label: 'Projetos Futuros' },
-  { to: '/contato', label: 'Contato' },
-]
+import { navLinks } from '../navigation'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
