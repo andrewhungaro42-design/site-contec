@@ -2,6 +2,7 @@ import { useState } from 'react'
 import pixLogo from '../assets/PixLogo.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
 import copyImg from '../assets/CopyPaste.png'
+import { INSTAGRAM_LINK, WHATSAPP_LINK } from '../linksContato'
 
 const PIX_CNPJ = '50.412.437/0001-00'
 
@@ -68,7 +69,7 @@ export default function Contato() {
             <div className="flex flex-col gap-3 sm:gap-4">
               {/* WhatsApp */}
               <a
-                href="https://wa.me/5532988051075"
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
                 className="contact-info-card contact-info-card-whatsapp flex items-center gap-4 rounded-2xl p-4 no-underline sm:p-5"
@@ -87,7 +88,7 @@ export default function Contato() {
 
               {/* Instagram */}
               <a
-                href="https://instagram.com/sonhodeummeninoong"
+                href={INSTAGRAM_LINK}
                 target="_blank"
                 rel="noreferrer"
                 className="contact-info-card contact-info-card-instagram flex items-center gap-4 rounded-2xl p-4 no-underline sm:p-5"

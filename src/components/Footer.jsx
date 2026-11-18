@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import logoImg from '../assets/LogoOriginal.png'
 import { navLinks } from '../navigation'
+import { INSTAGRAM_LINK, WHATSAPP_LINK } from '../linksContato'
 
 export default function Footer() {
   return (
@@ -50,7 +51,7 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <span>📱</span>
                 <a
-                  href="https://wa.me/5532988051075"
+                  href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="footer-link footer-link-accent no-underline"
@@ -61,7 +62,7 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <span>📸</span>
                 <a
-                  href="https://instagram.com/sonhodeummeninoong"
+                  href={INSTAGRAM_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="footer-link no-underline"

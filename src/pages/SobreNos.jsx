@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import imagemCristiano from '../assets/imagemCristiano.jpeg'
 import imagemTatyane from '../assets/imagemTatyane.jpeg'
 import pixLogo from '../assets/PixLogo.png'
+import { INSTAGRAM_LINK, WHATSAPP_LINK } from '../linksContato'
 
 const valores = [
   {
@@ -214,24 +215,34 @@ export default function SobreNos() {
                 border: '1px solid rgba(255,255,255,0.2)',
               }}
             >
-              <div className="flex items-center gap-3 sm:gap-4">
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 sm:gap-4 no-underline"
+              >
                 <span className="text-xl sm:text-2xl">📱</span>
                 <div className="text-left">
                   <p className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
                     WhatsApp
                   </p>
-                  <p className="font-bold text-base sm:text-lg">(32) 98805-1075</p>
+                  <p className="font-bold text-base sm:text-lg text-white">(32) 98805-1075</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 sm:gap-4">
+              </a>
+              <a
+                href={INSTAGRAM_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 sm:gap-4 no-underline"
+              >
                 <span className="text-xl sm:text-2xl">📸</span>
                 <div className="text-left">
                   <p className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
                     Instagram
                   </p>
-                  <p className="font-bold text-sm sm:text-base">@sonhodeummeninoong</p>
+                  <p className="font-bold text-sm sm:text-base text-white">@sonhodeummeninoong</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 

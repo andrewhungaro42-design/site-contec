@@ -7,6 +7,7 @@ import heartImg from '../assets/heartonhand.png'
 import footballImg from '../assets/football.PNG'
 import childrenImg from '../assets/children.png'
 import copyImg from '../assets/CopyPaste.png'
+import { WHATSAPP_LINK } from '../linksContato'
 
 const PIX_CNPJ = '50.412.437/0001-00'
 
@@ -276,7 +277,7 @@ export default function Home() {
 
               <div className="mt-4 flex flex-col gap-3">
                 <a
-                  href="https://wa.me/5532988051075"
+                  href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-3 px-4 py-3 rounded-xl no-underline text-sm font-semibold transition-colors"
