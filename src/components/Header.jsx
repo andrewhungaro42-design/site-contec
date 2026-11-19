@@ -2,13 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoImg from '../assets/LogoOriginal.png'
 import { useAuth } from '../context/auth-context'
-
-const navLinks = [
-  { to: '/', label: 'Início' },
-  { to: '/sobre', label: 'Sobre Nós' },
-  { to: '/projetos', label: 'Projetos Futuros' },
-  { to: '/contato', label: 'Contato' },
-]
+import { navLinks } from '../navigation'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -67,8 +61,7 @@ export default function Header() {
             className="w-10 h-10 rounded-xl object-cover"
           />
           <span
-            className="hidden sm:block text-base font-bold"
-            style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
+            className="font-display hidden text-base font-bold text-ong-dark sm:block"
           >
             Sonho de um Menino
           </span>
@@ -80,23 +73,7 @@ export default function Header() {
             <Link
               key={to}
               to={to}
-              className="px-3 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 no-underline"
-              style={{
-                color: isActive(to) ? '#3d8fd1' : '#1a1a2e',
-                backgroundColor: isActive(to) ? '#f0f4ff' : 'transparent',
-              }}
-              onMouseEnter={e => {
-                if (!isActive(to)) {
-                  e.currentTarget.style.backgroundColor = '#f0f4ff'
-                  e.currentTarget.style.color = '#3d8fd1'
-                }
-              }}
-              onMouseLeave={e => {
-                if (!isActive(to)) {
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.color = '#1a1a2e'
-                }
-              }}
+              className={`nav-link px-3 xl:px-4 py-2 rounded-xl text-sm font-semibold no-underline ${isActive(to) ? 'nav-link-active' : ''}`}
             >
               {label}
             </Link>
@@ -111,14 +88,12 @@ export default function Header() {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setUserMenuOpen(o => !o)}
-                  className="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:bg-[#f0f4ff]"
-                  style={{ color: '#1a1a2e' }}
+                  className="text-ong-dark flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:bg-[#f0f4ff]"
                   aria-haspopup="menu"
                   aria-expanded={userMenuOpen}
                 >
                   <span
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm text-white"
-                    style={{ backgroundColor: '#3d8fd1', fontFamily: "'Fredoka One', cursive" }}
+                    className="font-display bg-primary flex h-8 w-8 items-center justify-center rounded-full text-sm text-white"
                   >
                     {initial}
                   </span>
@@ -132,10 +107,10 @@ export default function Header() {
                     style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.12)', border: '1.5px solid #f0f4ff' }}
                   >
                     <div className="px-3 py-2 mb-1 border-b" style={{ borderColor: '#f0f4ff' }}>
-                      <p className="text-sm font-bold truncate" style={{ color: '#1a1a2e' }}>
+                      <p className="text-ong-dark truncate text-sm font-bold">
                         {user.nome}
                       </p>
-                      <p className="text-xs truncate" style={{ color: '#9ca3af' }}>
+                      <p className="text-subtle truncate text-xs">
                         {user.email}
                       </p>
                     </div>
@@ -154,15 +129,13 @@ export default function Header() {
               <>
                 <Link
                   to="/login"
-                  className="px-3 xl:px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 no-underline hover:bg-[#f0f4ff] hover:!text-[#3d8fd1]"
-                  style={{ color: isActive('/login') ? '#3d8fd1' : '#1a1a2e' }}
+                  className={`nav-link px-3 xl:px-4 py-2 rounded-xl text-sm font-semibold no-underline ${isActive('/login') ? 'nav-link-active' : ''}`}
                 >
                   Entrar
                 </Link>
                 <Link
                   to="/registro"
-                  className="px-3 xl:px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200 no-underline hover:!bg-[#3d8fd1] hover:!text-white"
-                  style={{ color: '#3d8fd1', border: '1.5px solid #3d8fd1' }}
+                  className="button-outline-primary px-3 xl:px-4 py-2 rounded-xl text-sm font-bold no-underline hover:bg-primary hover:text-white"
                 >
                   Registrar
                 </Link>
@@ -171,11 +144,9 @@ export default function Header() {
           </div>
 
           <Link
-            to="/contato"
-            className="ml-2 px-5 py-2 rounded-xl text-sm font-bold text-white transition-all duration-200 no-underline"
-            style={{ backgroundColor: '#3d8fd1' }}
-            onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#2e6fa3')}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#3d8fd1')}
+            to="/"
+            state={{ scrollToDonation: true }}
+            className="button-primary ml-2 px-5 py-2 rounded-xl text-sm font-bold no-underline"
           >
             Doe Agora
           </Link>
@@ -185,8 +156,7 @@ export default function Header() {
         <button
           onClick={() => setMenuOpen(open => !open)}
           aria-expanded={menuOpen}
-          className="lg:hidden p-2 rounded-xl transition-colors"
-          style={{ color: '#1a1a2e' }}
+          className="text-ong-dark lg:hidden p-2 rounded-xl transition-colors"
           aria-label="Menu"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -215,11 +185,7 @@ export default function Header() {
                 key={to}
                 to={to}
                 onClick={closeMenu}
-                className="px-4 py-3 rounded-xl text-sm font-semibold no-underline transition-colors"
-                style={{
-                  color: isActive(to) ? '#3d8fd1' : '#1a1a2e',
-                  backgroundColor: isActive(to) ? '#f0f4ff' : 'transparent',
-                }}
+                className={`nav-link px-4 py-3 rounded-xl text-sm font-semibold no-underline ${isActive(to) ? 'nav-link-active' : ''}`}
               >
                 {label}
               </Link>
@@ -231,16 +197,15 @@ export default function Header() {
                 <>
                   <div className="flex items-center gap-3 px-4 py-2">
                     <span
-                      className="w-9 h-9 rounded-full flex items-center justify-center text-white flex-shrink-0"
-                      style={{ backgroundColor: '#3d8fd1', fontFamily: "'Fredoka One', cursive" }}
+                      className="font-display bg-primary flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-white"
                     >
                       {initial}
                     </span>
                     <div className="min-w-0">
-                      <p className="text-sm font-bold truncate" style={{ color: '#1a1a2e' }}>
+                      <p className="text-ong-dark truncate text-sm font-bold">
                         Olá, {firstName}
                       </p>
-                      <p className="text-xs truncate" style={{ color: '#9ca3af' }}>
+                      <p className="text-subtle truncate text-xs">
                         {user.email}
                       </p>
                     </div>
@@ -258,16 +223,14 @@ export default function Header() {
                   <Link
                     to="/login"
                     onClick={closeMenu}
-                    className="px-4 py-3 rounded-xl text-sm font-bold text-center no-underline"
-                    style={{ color: '#3d8fd1', backgroundColor: '#f0f4ff' }}
+                    className="button-outline-primary border-transparent bg-muted-bg px-4 py-3 rounded-xl text-sm font-bold text-center no-underline"
                   >
                     Entrar
                   </Link>
                   <Link
                     to="/registro"
                     onClick={closeMenu}
-                    className="px-4 py-3 rounded-xl text-sm font-bold text-center no-underline"
-                    style={{ color: '#3d8fd1', border: '1.5px solid #3d8fd1' }}
+                    className="button-outline-primary px-4 py-3 rounded-xl text-sm font-bold text-center no-underline"
                   >
                     Registrar
                   </Link>
@@ -276,10 +239,10 @@ export default function Header() {
             </div>
 
             <Link
-              to="/contato"
+              to="/"
+              state={{ scrollToDonation: true }}
               onClick={closeMenu}
-              className="mt-1 px-4 py-3 rounded-xl text-sm font-bold text-white text-center no-underline"
-              style={{ backgroundColor: '#3d8fd1' }}
+              className="button-primary mt-1 px-4 py-3 rounded-xl text-center text-sm font-bold no-underline"
             >
               Doe Agora 💙
             </Link>

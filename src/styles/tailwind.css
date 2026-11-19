@@ -31,3 +31,222 @@
     font-weight: 400;
   }
 }
+
+@layer components {
+  .section-title {
+    color: var(--color-ong-dark);
+  }
+
+  .text-body {
+    color: #4b5563;
+  }
+
+  .text-muted {
+    color: #6b7280;
+  }
+
+  .text-subtle {
+    color: #9ca3af;
+  }
+
+  .surface-muted {
+    background-color: var(--color-muted-bg);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-ong-dark);
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .field-control {
+    width: 100%;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background-color: #ffffff;
+    padding: 0.75rem 1rem;
+    color: var(--color-ong-dark);
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 200ms, box-shadow 200ms;
+  }
+
+  .field-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgb(61 143 209 / 15%);
+  }
+
+  .field-control[aria-invalid='true'] {
+    border-color: #ef4444;
+  }
+
+  .field-control[aria-invalid='true']:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgb(239 68 68 / 15%);
+  }
+
+  .contact-info-card {
+    border: 1.5px solid #e5e7eb;
+    transition: border-color 200ms, background-color 200ms;
+  }
+
+  .contact-info-card:hover {
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+  }
+
+  .contact-info-card-whatsapp:hover {
+    border-color: var(--color-secondary);
+    background-color: #f0fdf4;
+  }
+
+  .contact-info-card-instagram:hover {
+    border-color: #ec4899;
+    background-color: #fdf2f8;
+  }
+
+  .pix-copy-control {
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: border-color 200ms, background-color 200ms;
+  }
+
+  .pix-copy-home-default {
+    background-color: var(--color-muted-bg);
+  }
+
+  .pix-copy-contact-default {
+    border-color: #e5e7eb;
+    background-color: #ffffff;
+  }
+
+  .pix-copy-success {
+    border-color: var(--color-secondary);
+    background-color: #f0fdf4;
+  }
+
+  .form-error {
+    border: 1.5px solid rgb(239 68 68 / 30%);
+    background-color: #fef2f2;
+    color: #dc2626;
+  }
+
+  .form-success {
+    border: 1.5px solid rgb(77 184 112 / 30%);
+    background-color: #f0fdf4;
+    color: var(--color-secondary-dark);
+  }
+
+  .button-primary,
+  .button-secondary {
+    color: #ffffff;
+    transition: background-color 200ms, opacity 200ms;
+  }
+
+  .button-primary {
+    background-color: var(--color-primary);
+  }
+
+  .button-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+  }
+
+  .button-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .button-secondary:hover:not(:disabled) {
+    background-color: var(--color-secondary-dark);
+  }
+
+  .button-accent {
+    background-color: var(--color-accent);
+    color: var(--color-ong-dark);
+    transition: background-color 200ms;
+  }
+
+  .button-accent:hover {
+    background-color: var(--color-accent-dark);
+  }
+
+  .button-outline-primary {
+    border: 1.5px solid var(--color-primary);
+    background-color: #ffffff;
+    color: var(--color-primary);
+    transition: background-color 200ms, color 200ms;
+  }
+
+  .button-outline-primary:hover {
+    background-color: var(--color-muted-bg);
+  }
+
+  .button-glass {
+    border: 1.5px solid rgb(255 255 255 / 25%);
+    background-color: rgb(255 255 255 / 12%);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    transition: background-color 200ms;
+  }
+
+  .button-glass:hover {
+    background-color: rgb(255 255 255 / 20%);
+  }
+
+  .card-interactive {
+    transition: box-shadow 200ms;
+  }
+
+  .card-interactive:hover {
+    box-shadow: 0 8px 30px rgb(0 0 0 / 10%);
+  }
+
+  .card-muted-interactive {
+    opacity: 0.75;
+    transition: opacity 200ms, box-shadow 200ms;
+  }
+
+  .card-muted-interactive:hover {
+    opacity: 1;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 10%);
+  }
+
+  .nav-link {
+    color: var(--color-ong-dark);
+    transition: color 200ms, background-color 200ms;
+  }
+
+  .nav-link:hover,
+  .nav-link-active {
+    background-color: var(--color-muted-bg);
+    color: var(--color-primary);
+  }
+
+  .footer-link {
+    color: #9ca3af;
+    transition: color 200ms;
+  }
+
+  .footer-link:hover {
+    color: #ffffff;
+  }
+
+  .footer-link-accent:hover {
+    color: var(--color-secondary);
+  }
+
+  .admin-info-button {
+    border: 2px dashed #d1d5db;
+    background-color: transparent;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: border-color 200ms, background-color 200ms, color 200ms;
+  }
+
+  .admin-info-button:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-muted-bg);
+    color: var(--color-primary);
+  }
+}

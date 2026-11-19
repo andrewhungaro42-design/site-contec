@@ -2,23 +2,13 @@ import { useState } from 'react'
 import pixLogo from '../assets/PixLogo.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
 import copyImg from '../assets/CopyPaste.png'
-
-const PIX_CNPJ = '50.412.437/0001-00'
+import { INSTAGRAM_LINK, PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
+import useCopyString from '../hooks/useCopyString'
 
 export default function Contato() {
-  const [copied, setCopied] = useState(false)
+  const { copied, copyError, copyString } = useCopyString()
   const [form, setForm] = useState({ nome: '', email: '', mensagem: '' })
   const [sent, setSent] = useState(false)
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(PIX_CNPJ)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
-    } catch (e) {
-      console.error(e)
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -39,10 +29,7 @@ export default function Contato() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
-          >
+          <h1 className="mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
             Contato
           </h1>
           <p className="text-base sm:text-xl" style={{ color: 'rgba(255,255,255,0.85)' }}>
@@ -64,29 +51,17 @@ export default function Contato() {
 
           {/* ── Left: Info + Doação ── */}
           <div>
-            <h2
-              className="text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-            >
+            <h2 className="section-title mb-6 text-2xl sm:mb-8 sm:text-3xl md:text-4xl">
               Como nos encontrar
             </h2>
 
             <div className="flex flex-col gap-3 sm:gap-4">
               {/* WhatsApp */}
               <a
-                href="https://wa.me/5532988051075"
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl no-underline transition-all duration-200"
-                style={{ border: '1.5px solid #e5e7eb' }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = '#4db870'
-                  e.currentTarget.style.backgroundColor = '#f0fdf4'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = '#e5e7eb'
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                }}
+                className="contact-info-card contact-info-card-whatsapp flex items-center gap-4 rounded-2xl p-4 no-underline sm:p-5"
               >
                 <div
                   className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0"
@@ -95,26 +70,17 @@ export default function Contato() {
                   📱
                 </div>
                 <div>
-                  <p className="font-bold text-sm" style={{ color: '#1a1a2e' }}>WhatsApp</p>
-                  <p className="font-bold text-base sm:text-lg" style={{ color: '#4db870' }}>(32) 98805-1075</p>
+                  <p className="text-ong-dark text-sm font-bold">WhatsApp</p>
+                  <p className="text-secondary text-base font-bold sm:text-lg">{TELEFONE_DISPLAY}</p>
                 </div>
               </a>
 
               {/* Instagram */}
               <a
-                href="https://instagram.com/sonhodeummeninoong"
+                href={INSTAGRAM_LINK}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl no-underline transition-all duration-200"
-                style={{ border: '1.5px solid #e5e7eb' }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = '#ec4899'
-                  e.currentTarget.style.backgroundColor = '#fdf2f8'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = '#e5e7eb'
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                }}
+                className="contact-info-card contact-info-card-instagram flex items-center gap-4 rounded-2xl p-4 no-underline sm:p-5"
               >
                 <div
                   className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0"
@@ -123,42 +89,32 @@ export default function Contato() {
                   📸
                 </div>
                 <div>
-                  <p className="font-bold text-sm" style={{ color: '#1a1a2e' }}>Instagram</p>
-                  <p className="font-bold text-sm sm:text-lg" style={{ color: '#ec4899' }}>@sonhodeummeninoong</p>
+                  <p className="text-ong-dark text-sm font-bold">Instagram</p>
+                  <p className="text-sm font-bold text-pink-500 sm:text-lg">@sonhodeummeninoong</p>
                 </div>
               </a>
 
               {/* Localização */}
               <div
-                className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl"
-                style={{ border: '1.5px solid #e5e7eb' }}
+                className="contact-info-card flex items-center gap-4 rounded-2xl p-4 sm:p-5"
               >
-                <div
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl flex-shrink-0"
-                  style={{ backgroundColor: '#f0f4ff' }}
-                >
+                <div className="surface-muted flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl text-xl sm:h-12 sm:w-12 sm:text-2xl">
                   📍
                 </div>
                 <div>
-                  <p className="font-bold text-sm" style={{ color: '#1a1a2e' }}>Localização</p>
-                  <p className="text-sm sm:text-base" style={{ color: '#6b7280' }}>Juiz de Fora, MG</p>
+                  <p className="text-ong-dark text-sm font-bold">Localização</p>
+                  <p className="text-muted text-sm sm:text-base">Juiz de Fora, MG</p>
                 </div>
               </div>
             </div>
 
             {/* PIX / Doação */}
             <div className="mt-8 sm:mt-10">
-              <h3
-                className="text-2xl sm:text-3xl mb-4 sm:mb-5"
-                style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-              >
+              <h3 className="section-title mb-4 text-2xl sm:mb-5 sm:text-3xl">
                 Doe via PIX
               </h3>
 
-              <div
-                className="rounded-2xl p-5 sm:p-6"
-                style={{ backgroundColor: '#f0f4ff' }}
-              >
+              <div className="surface-muted rounded-2xl p-5 sm:p-6">
                 {/* QR Code */}
                 <div className="flex justify-center mb-4 sm:mb-5">
                   <img
@@ -171,27 +127,16 @@ export default function Contato() {
 
                 {/* Copy button */}
                 <button
-                  onClick={handleCopy}
-                  className="w-full flex items-center justify-between px-3 sm:px-4 py-3 rounded-xl transition-all duration-200 text-left"
-                  style={{
-                    backgroundColor: copied ? '#f0fdf4' : '#ffffff',
-                    border: `1.5px solid ${copied ? '#4db870' : '#e5e7eb'}`,
-                    cursor: 'pointer',
-                  }}
+                  onClick={() => copyString(PIX_CNPJ)}
+                  className={`pix-copy-control w-full flex items-center justify-between px-3 sm:px-4 py-3 rounded-xl text-left ${copied ? 'pix-copy-success' : 'pix-copy-contact-default'}`}
                 >
                   <div className="flex items-center gap-2 min-w-0">
                     <img src={pixLogo} alt="PIX" className="h-5 sm:h-6 object-contain flex-shrink-0" />
-                    <span
-                      className="font-mono font-bold text-xs sm:text-sm truncate"
-                      style={{ color: '#1a1a2e' }}
-                    >
+                    <span className="font-mono truncate text-xs font-bold text-ong-dark sm:text-sm">
                       {PIX_CNPJ}
                     </span>
                   </div>
-                  <div
-                    className="flex items-center gap-1 text-xs font-bold flex-shrink-0 ml-2"
-                    style={{ color: copied ? '#4db870' : '#3d8fd1' }}
-                  >
+                  <div className={`ml-2 flex flex-shrink-0 items-center gap-1 text-xs font-bold ${copied ? 'text-secondary' : 'text-primary'}`}>
                     {copied ? (
                       '✓ Copiado!'
                     ) : (
@@ -204,31 +149,27 @@ export default function Contato() {
                 </button>
 
                 <p
-                  className="text-center text-xs mt-3"
-                  style={{ color: '#9ca3af' }}
+                  className={`mt-3 text-center text-xs ${copyError ? 'text-red-600' : 'text-subtle'}`}
+                  role="status"
+                  aria-live="polite"
                 >
-                  Clique para copiar a chave PIX (CNPJ)
+                  {copyError || 'Clique para copiar a chave PIX (CNPJ)'}
                 </p>
               </div>
             </div>
           </div>
 
           {/* ── Right: Form ── */}
-          <div
-            className="rounded-3xl p-6 sm:p-8"
-            style={{ backgroundColor: '#f0f4ff' }}
-          >
+          <div className="surface-muted rounded-3xl p-6 sm:p-8">
             <h2
-              className="text-2xl sm:text-3xl md:text-4xl mb-6 sm:mb-8"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
+              className="section-title mb-6 text-2xl sm:mb-8 sm:text-3xl md:text-4xl"
             >
               Envie uma Mensagem
             </h2>
 
             {sent && (
               <div
-                className="rounded-2xl p-4 mb-6 text-center font-bold text-sm"
-                style={{ backgroundColor: '#f0fdf4', color: '#3a9458', border: '1.5px solid rgba(77,184,112,0.3)' }}
+                className="form-success rounded-2xl p-4 mb-6 text-center text-sm font-bold"
               >
                 ✅ Mensagem enviada! Entraremos em contato em breve.
               </div>
@@ -236,91 +177,58 @@ export default function Contato() {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
               <div>
-                <label
-                  className="block text-sm font-bold mb-2"
-                  style={{ color: '#1a1a2e' }}
-                >
+                <label htmlFor="contact-name" className="field-label">
                   Nome
                 </label>
                 <input
                   type="text"
+                  id="contact-name"
                   value={form.nome}
                   onChange={e => setForm({ ...form, nome: e.target.value })}
                   placeholder="Seu nome completo"
                   required
-                  className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200"
-                  style={{
-                    border: '1.5px solid #e5e7eb',
-                    backgroundColor: '#ffffff',
-                    color: '#1a1a2e',
-                    outline: 'none',
-                  }}
-                  onFocus={e => (e.currentTarget.style.borderColor = '#3d8fd1')}
-                  onBlur={e => (e.currentTarget.style.borderColor = '#e5e7eb')}
+                  className="field-control"
                 />
               </div>
 
               <div>
-                <label
-                  className="block text-sm font-bold mb-2"
-                  style={{ color: '#1a1a2e' }}
-                >
+                <label htmlFor="contact-email" className="field-label">
                   Email
                 </label>
                 <input
                   type="email"
+                  id="contact-email"
                   value={form.email}
                   onChange={e => setForm({ ...form, email: e.target.value })}
                   placeholder="seu@email.com"
                   required
-                  className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200"
-                  style={{
-                    border: '1.5px solid #e5e7eb',
-                    backgroundColor: '#ffffff',
-                    color: '#1a1a2e',
-                    outline: 'none',
-                  }}
-                  onFocus={e => (e.currentTarget.style.borderColor = '#3d8fd1')}
-                  onBlur={e => (e.currentTarget.style.borderColor = '#e5e7eb')}
+                  className="field-control"
                 />
               </div>
 
               <div>
-                <label
-                  className="block text-sm font-bold mb-2"
-                  style={{ color: '#1a1a2e' }}
-                >
+                <label htmlFor="contact-message" className="field-label">
                   Mensagem
                 </label>
                 <textarea
+                  id="contact-message"
                   value={form.mensagem}
                   onChange={e => setForm({ ...form, mensagem: e.target.value })}
                   placeholder="Como podemos ajudar? Deixe sua mensagem..."
                   rows={5}
                   required
-                  className="w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 resize-none"
-                  style={{
-                    border: '1.5px solid #e5e7eb',
-                    backgroundColor: '#ffffff',
-                    color: '#1a1a2e',
-                    outline: 'none',
-                  }}
-                  onFocus={e => (e.currentTarget.style.borderColor = '#3d8fd1')}
-                  onBlur={e => (e.currentTarget.style.borderColor = '#e5e7eb')}
+                  className="field-control resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 sm:py-4 rounded-xl text-white font-bold text-base transition-all duration-200"
-                style={{ backgroundColor: '#3d8fd1' }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#2e6fa3')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#3d8fd1')}
+                className="button-primary w-full py-3 sm:py-4 rounded-xl font-bold text-base"
               >
                 Enviar Mensagem 💙
               </button>
 
-              <p className="text-center text-xs" style={{ color: '#9ca3af' }}>
+              <p className="text-subtle text-center text-xs">
                 * O formulário ainda não está conectado ao servidor.
               </p>
             </form>
@@ -329,19 +237,15 @@ export default function Contato() {
       </section>
 
       {/* ─── GRATIDÃO ─── */}
-      <section
-        className="py-12 sm:py-16 text-center"
-        style={{ backgroundColor: '#f0f4ff' }}
-      >
+      <section className="surface-muted py-12 text-center sm:py-16">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-4xl sm:text-5xl mb-4">🙏</div>
           <h2
-            className="text-2xl sm:text-3xl md:text-4xl mb-3"
-            style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
+            className="section-title mb-3 text-2xl sm:text-3xl md:text-4xl"
           >
             Gratidão por fazer parte desse sonho!
           </h2>
-          <p className="text-base sm:text-lg" style={{ color: '#6b7280' }}>
+          <p className="text-muted text-base sm:text-lg">
             Cada gesto de amor e solidariedade nos motiva a continuar transformando vidas.
           </p>
         </div>
