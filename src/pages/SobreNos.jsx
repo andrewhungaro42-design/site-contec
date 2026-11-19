@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import imagemCristiano from '../assets/imagemCristiano.jpeg'
 import imagemTatyane from '../assets/imagemTatyane.jpeg'
 import pixLogo from '../assets/PixLogo.png'
-import { INSTAGRAM_LINK, WHATSAPP_LINK } from '../linksContato'
+import { INSTAGRAM_LINK, PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
 
 const valores = [
   {
@@ -202,7 +202,7 @@ export default function SobreNos() {
                 className="font-mono text-sm sm:text-base font-bold px-3 py-2 sm:px-4 sm:py-3 rounded-2xl break-all"
                 style={{ background: 'rgba(255,255,255,0.1)' }}
               >
-                50.412.437/0001-00
+                {PIX_CNPJ}
               </p>
             </div>
 
@@ -226,7 +226,7 @@ export default function SobreNos() {
                   <p className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
                     WhatsApp
                   </p>
-                  <p className="font-bold text-base sm:text-lg text-white">(32) 98805-1075</p>
+                  <p className="font-bold text-base sm:text-lg text-white">{TELEFONE_DISPLAY}</p>
                 </div>
               </a>
               <a

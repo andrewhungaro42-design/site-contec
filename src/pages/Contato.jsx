@@ -2,9 +2,7 @@ import { useState } from 'react'
 import pixLogo from '../assets/PixLogo.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
 import copyImg from '../assets/CopyPaste.png'
-import { INSTAGRAM_LINK, WHATSAPP_LINK } from '../linksContato'
-
-const PIX_CNPJ = '50.412.437/0001-00'
+import { INSTAGRAM_LINK, PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
 
 export default function Contato() {
   const [copied, setCopied] = useState(false)
@@ -82,7 +80,7 @@ export default function Contato() {
                 </div>
                 <div>
                   <p className="text-ong-dark text-sm font-bold">WhatsApp</p>
-                  <p className="text-secondary text-base font-bold sm:text-lg">(32) 98805-1075</p>
+                  <p className="text-secondary text-base font-bold sm:text-lg">{TELEFONE_DISPLAY}</p>
                 </div>
               </a>
 

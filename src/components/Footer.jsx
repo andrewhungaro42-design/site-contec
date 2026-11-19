@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import logoImg from '../assets/LogoOriginal.png'
 import { navLinks } from '../navigation'
-import { INSTAGRAM_LINK, WHATSAPP_LINK } from '../linksContato'
+import {
+  INSTAGRAM_LINK,
+  PIX_CNPJ,
+  TELEFONE_DISPLAY,
+  WHATSAPP_LINK,
+} from '../linksContato'
 
 export default function Footer() {
   return (
@@ -56,7 +61,7 @@ export default function Footer() {
                   rel="noreferrer"
                   className="footer-link footer-link-accent no-underline"
                 >
-                  (32) 98805-1075
+                  {TELEFONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -76,7 +81,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span>💰</span>
-                <span className="font-mono text-xs break-all">PIX: 50.412.437/0001-00</span>
+                <span className="font-mono text-xs break-all">PIX: {PIX_CNPJ}</span>
               </li>
             </ul>
           </div>
@@ -84,7 +89,7 @@ export default function Footer() {
 
         <div className="text-xs text-center text-gray-500 mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col items-center gap-2 sm:flex-row sm:justify-between sm:gap-3 border-t border-white/10">
           <span>© {new Date().getFullYear()} Sonho de um Menino — Todos os direitos reservados</span>
-          <span>Juiz de Fora, MG — CNPJ: 50.412.437/0001-00</span>
+          <span>Juiz de Fora, MG — CNPJ: {PIX_CNPJ}</span>
         </div>
       </div>
     </footer>

@@ -7,9 +7,7 @@ import heartImg from '../assets/heartonhand.png'
 import footballImg from '../assets/football.PNG'
 import childrenImg from '../assets/children.png'
 import copyImg from '../assets/CopyPaste.png'
-import { WHATSAPP_LINK } from '../linksContato'
-
-const PIX_CNPJ = '50.412.437/0001-00'
+import { PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
 
 const stats = [
   { num: '3+', label: 'Anos de Impacto' },
@@ -283,7 +281,7 @@ export default function Home() {
                   className="flex items-center gap-3 px-4 py-3 rounded-xl no-underline text-sm font-semibold transition-colors"
                   style={{ backgroundColor: '#f0fdf4', color: '#3a9458' }}
                 >
-                  📱 Dúvidas? Fale no WhatsApp: (32) 98805-1075
+                  📱 Dúvidas? Fale no WhatsApp: {TELEFONE_DISPLAY}
                 </a>
               </div>
             </div>
