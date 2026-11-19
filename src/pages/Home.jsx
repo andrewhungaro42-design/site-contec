@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import heroImg from '../assets/GraphicPlaceholder.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
@@ -8,6 +8,7 @@ import footballImg from '../assets/football.PNG'
 import childrenImg from '../assets/children.png'
 import copyImg from '../assets/CopyPaste.png'
 import { PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
+import useCopyString from '../hooks/useCopyString'
 
 const stats = [
   { num: '3+', label: 'Anos de Impacto' },
@@ -39,7 +40,7 @@ const missions = [
 ]
 
 export default function Home() {
-  const [copied, setCopied] = useState(false)
+  const { copied, copyError, copyString } = useCopyString()
   const location = useLocation()
 
   useEffect(() => {
@@ -47,16 +48,6 @@ export default function Home() {
       document.getElementById('doacao')?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [location.key, location.state])
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(PIX_CNPJ)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
-    } catch (e) {
-      console.error('Falha ao copiar', e)
-    }
-  }
 
   return (
     <div>
@@ -240,7 +231,7 @@ export default function Home() {
               </div>
 
               <button
-                onClick={handleCopy}
+                onClick={() => copyString(PIX_CNPJ)}
                 className={`pix-copy-control w-full flex items-center justify-between px-5 py-4 rounded-2xl text-left ${copied ? 'pix-copy-success' : 'pix-copy-home-default'}`}
               >
                 <span className="font-mono min-w-0 truncate text-sm font-bold text-ong-dark sm:text-lg">
@@ -258,8 +249,12 @@ export default function Home() {
                 </div>
               </button>
 
-              <p className="text-subtle mt-3 text-center text-sm">
-                Clique para copiar a chave PIX
+              <p
+                className={`mt-3 text-center text-sm ${copyError ? 'text-red-600' : 'text-subtle'}`}
+                role="status"
+                aria-live="polite"
+              >
+                {copyError || 'Clique para copiar a chave PIX'}
               </p>
 
               <div

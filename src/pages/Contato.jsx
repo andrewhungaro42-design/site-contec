@@ -3,21 +3,12 @@ import pixLogo from '../assets/PixLogo.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
 import copyImg from '../assets/CopyPaste.png'
 import { INSTAGRAM_LINK, PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
+import useCopyString from '../hooks/useCopyString'
 
 export default function Contato() {
-  const [copied, setCopied] = useState(false)
+  const { copied, copyError, copyString } = useCopyString()
   const [form, setForm] = useState({ nome: '', email: '', mensagem: '' })
   const [sent, setSent] = useState(false)
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(PIX_CNPJ)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
-    } catch (e) {
-      console.error(e)
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -136,7 +127,7 @@ export default function Contato() {
 
                 {/* Copy button */}
                 <button
-                  onClick={handleCopy}
+                  onClick={() => copyString(PIX_CNPJ)}
                   className={`pix-copy-control w-full flex items-center justify-between px-3 sm:px-4 py-3 rounded-xl text-left ${copied ? 'pix-copy-success' : 'pix-copy-contact-default'}`}
                 >
                   <div className="flex items-center gap-2 min-w-0">
@@ -157,8 +148,12 @@ export default function Contato() {
                   </div>
                 </button>
 
-                <p className="text-subtle mt-3 text-center text-xs">
-                  Clique para copiar a chave PIX (CNPJ)
+                <p
+                  className={`mt-3 text-center text-xs ${copyError ? 'text-red-600' : 'text-subtle'}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  {copyError || 'Clique para copiar a chave PIX (CNPJ)'}
                 </p>
               </div>
             </div>
