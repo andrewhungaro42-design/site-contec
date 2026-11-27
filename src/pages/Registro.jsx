@@ -50,16 +50,14 @@ export default function Registro() {
       gradient="linear-gradient(135deg, #4db870 0%, #3a9458 60%, #2f7a48 100%)"
     >
       <h2
-        className="text-2xl sm:text-3xl mb-6"
-        style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
+        className="section-title mb-6 text-2xl sm:text-3xl"
       >
         Criar conta
       </h2>
 
       {formError && (
         <div
-          className="rounded-2xl p-4 mb-5 text-center font-bold text-sm"
-          style={{ backgroundColor: '#fef2f2', color: '#dc2626', border: '1.5px solid rgba(239,68,68,0.3)' }}
+          className="form-error rounded-2xl p-4 mb-5 text-center text-sm font-bold"
           role="alert"
         >
           {formError}
@@ -109,23 +107,20 @@ export default function Registro() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 sm:py-4 rounded-xl text-white font-bold text-base transition-all duration-200 disabled:opacity-70"
-          style={{ backgroundColor: '#4db870' }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#3a9458')}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#4db870')}
+          className="button-secondary w-full py-3 sm:py-4 rounded-xl font-bold text-base disabled:opacity-70"
         >
           {loading ? 'Criando conta...' : 'Criar conta 💚'}
         </button>
 
-        <p className="text-center text-sm" style={{ color: '#4b5563' }}>
+        <p className="text-body text-center text-sm">
           Já tem uma conta?{' '}
-          <Link to="/login" className="font-bold no-underline" style={{ color: '#3a9458' }}>
+          <Link to="/login" className="font-bold text-secondary-dark no-underline hover:text-secondary">
             Entrar
           </Link>
         </p>
 
-        <p className="text-center text-xs" style={{ color: '#9ca3af' }}>
-          <Link to="/" className="no-underline" style={{ color: '#9ca3af' }}>
+        <p className="text-subtle text-center text-xs">
+          <Link to="/" className="text-subtle no-underline hover:text-primary">
             ← Continuar sem entrar
           </Link>
         </p>

@@ -68,10 +68,7 @@ export default function ProjetosFuturos() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
-          >
+          <h1 className="mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
             Projetos Futuros
           </h1>
           <p className="text-base sm:text-xl" style={{ color: 'rgba(255,255,255,0.8)' }}>
@@ -87,17 +84,14 @@ export default function ProjetosFuturos() {
       </section>
 
       {/* ─── GRID DE PROJETOS ─── */}
-      <section className="py-14 sm:py-20" style={{ backgroundColor: '#f0f4ff' }}>
+      <section className="surface-muted py-14 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-14">
             <div className="text-5xl sm:text-6xl mb-4">🌱</div>
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-            >
+            <h2 className="section-title mb-3 text-3xl sm:text-4xl md:text-5xl">
               Novidades em Breve!
             </h2>
-            <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: '#6b7280' }}>
+            <p className="text-muted mx-auto max-w-xl text-base sm:text-lg">
               Estamos trabalhando em novos projetos para ampliar nosso alcance e impactar
               ainda mais vidas em Juiz de Fora. Fique ligado!
             </p>
@@ -107,25 +101,13 @@ export default function ProjetosFuturos() {
             {planos.map(({ icon, title, desc, tag, tagColor, tagBg }) => (
               <div
                 key={title}
-                className="rounded-2xl p-5 sm:p-6 shadow-sm transition-all duration-200"
-                style={{ backgroundColor: '#ffffff', opacity: 0.75 }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.opacity = '1'
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.10)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.opacity = '0.75'
-                  e.currentTarget.style.boxShadow = ''
-                }}
+                className="card-muted-interactive rounded-2xl bg-white p-5 shadow-sm sm:p-6"
               >
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{icon}</div>
-                <h3
-                  className="text-lg sm:text-xl mb-2"
-                  style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-                >
+                <h3 className="section-title mb-2 text-lg sm:text-xl">
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: '#6b7280' }}>
+                <p className="text-muted mb-4 text-sm leading-relaxed">
                   {desc}
                 </p>
                 <span
@@ -138,9 +120,9 @@ export default function ProjetosFuturos() {
             ))}
           </div>
 
-          <p className="text-center mt-10 sm:mt-12 text-sm" style={{ color: '#9ca3af' }}>
+          <p className="text-subtle mt-10 text-center text-sm sm:mt-12">
             Quer apoiar um projeto específico? Entre em{' '}
-            <Link to="/contato" className="font-bold no-underline" style={{ color: '#3d8fd1' }}>
+            <Link to="/contato" className="font-bold text-primary no-underline hover:text-primary-dark">
               contato conosco
             </Link>
             !
@@ -151,29 +133,13 @@ export default function ProjetosFuturos() {
       {/* ─── ADMIN BUTTON ─── */}
       <section className="bg-white py-10 sm:py-14">
         <div className="max-w-4xl mx-auto px-4 flex flex-col items-center gap-4">
-          <p className="text-sm" style={{ color: '#9ca3af' }}>
+          <p className="text-subtle text-sm">
             Área restrita para a equipe da ONG
           </p>
 
           <button
             onClick={() => setShowAdminInfo(!showAdminInfo)}
-            className="flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200"
-            style={{
-              border: '2px dashed #d1d5db',
-              color: '#9ca3af',
-              backgroundColor: 'transparent',
-              cursor: 'pointer',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = '#3d8fd1'
-              e.currentTarget.style.color = '#3d8fd1'
-              e.currentTarget.style.backgroundColor = '#f0f4ff'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = '#d1d5db'
-              e.currentTarget.style.color = '#9ca3af'
-              e.currentTarget.style.backgroundColor = 'transparent'
-            }}
+            className="admin-info-button flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold sm:px-6"
           >
             🔐 Área Administrativa
           </button>
@@ -188,15 +154,15 @@ export default function ProjetosFuturos() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-xl">🔒</span>
-                <h3 className="font-bold" style={{ color: '#1a1a2e' }}>
+                <h3 className="text-ong-dark font-bold">
                   Acesso Restrito
                 </h3>
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: '#4b5563' }}>
+              <p className="text-body text-sm leading-relaxed">
                 Esta área é exclusiva para a equipe da ONG Sonho de um Menino.
                 O sistema de login e gerenciamento de projetos está em desenvolvimento.
               </p>
-              <p className="text-xs font-bold mt-4" style={{ color: '#3d8fd1' }}>
+              <p className="text-primary mt-4 text-xs font-bold">
                 🚀 Em breve disponível!
               </p>
             </div>

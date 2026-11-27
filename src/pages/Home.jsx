@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import heroImg from '../assets/GraphicPlaceholder.png'
 import qrImg from '../assets/QRCodePlaceholder.png'
 import pixLogo from '../assets/PixLogo.png'
@@ -7,8 +7,8 @@ import heartImg from '../assets/heartonhand.png'
 import footballImg from '../assets/football.PNG'
 import childrenImg from '../assets/children.png'
 import copyImg from '../assets/CopyPaste.png'
-
-const PIX_CNPJ = '50.412.437/0001-00'
+import { PIX_CNPJ, TELEFONE_DISPLAY, WHATSAPP_LINK } from '../linksContato'
+import useCopyString from '../hooks/useCopyString'
 
 const stats = [
   { num: '3+', label: 'Anos de Impacto' },
@@ -40,17 +40,14 @@ const missions = [
 ]
 
 export default function Home() {
-  const [copied, setCopied] = useState(false)
+  const { copied, copyError, copyString } = useCopyString()
+  const location = useLocation()
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(PIX_CNPJ)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
-    } catch (e) {
-      console.error('Falha ao copiar', e)
+  useEffect(() => {
+    if (location.state?.scrollToDonation) {
+      document.getElementById('doacao')?.scrollIntoView({ behavior: 'smooth' })
     }
-  }
+  }, [location.key, location.state])
 
   return (
     <div>
@@ -92,7 +89,6 @@ export default function Home() {
 
             <h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-4"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#ffffff' }}
             >
               Sonho de um Menino
             </h1>
@@ -108,25 +104,15 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
-                to="/contato"
-                className="px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-base font-bold no-underline transition-all duration-200 text-center"
-                style={{ background: '#f5a623', color: '#1a1a2e' }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#d4891a')}
-                onMouseLeave={e => (e.currentTarget.style.background = '#f5a623')}
+                to="/"
+                state={{ scrollToDonation: true }}
+                className="button-accent rounded-2xl px-6 py-3 text-center text-base font-bold no-underline sm:px-8 sm:py-4"
               >
                 💙 Faça Sua Doação
               </Link>
               <Link
                 to="/sobre"
-                className="px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-base font-bold no-underline transition-all duration-200 text-center"
-                style={{
-                  background: 'rgba(255,255,255,0.12)',
-                  color: '#ffffff',
-                  border: '1.5px solid rgba(255,255,255,0.25)',
-                  backdropFilter: 'blur(8px)',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.12)')}
+                className="button-glass rounded-2xl px-6 py-3 text-center text-base font-bold no-underline sm:px-8 sm:py-4"
               >
                 Saiba Mais →
               </Link>
@@ -158,12 +144,11 @@ export default function Home() {
           {stats.map(({ num, label }) => (
             <div key={label} className="text-center py-4">
               <div
-                className="text-4xl md:text-5xl font-bold"
-                style={{ fontFamily: "'Fredoka One', cursive", color: '#3d8fd1' }}
+                className="font-display text-primary text-4xl font-bold md:text-5xl"
               >
                 {num}
               </div>
-              <div className="mt-1 text-sm font-semibold" style={{ color: '#6b7280' }}>
+              <div className="text-muted mt-1 text-sm font-semibold">
                 {label}
               </div>
             </div>
@@ -172,16 +157,13 @@ export default function Home() {
       </section>
 
       {/* ─── MISSION CARDS ─── */}
-      <section className="py-14 sm:py-20" style={{ backgroundColor: '#f0f4ff' }}>
+      <section className="surface-muted py-14 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-12">
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-            >
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
               O Que Fazemos
             </h2>
-            <p className="mt-3 text-lg" style={{ color: '#6b7280' }}>
+            <p className="text-muted mt-3 text-lg">
               Nossa missão em três pilares
             </p>
           </div>
@@ -190,10 +172,7 @@ export default function Home() {
             {missions.map(({ img, title, desc, color, bg }) => (
               <div
                 key={title}
-                className="rounded-2xl p-8 shadow-sm transition-shadow duration-200"
-                style={{ backgroundColor: '#ffffff' }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.10)')}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = '')}
+                className="card-interactive rounded-2xl bg-white p-8 shadow-sm"
               >
                 <div
                   className="w-16 h-16 rounded-2xl mb-6 flex items-center justify-center"
@@ -201,13 +180,10 @@ export default function Home() {
                 >
                   <img src={img} alt={title} className="w-10 h-10 object-contain" />
                 </div>
-                <h3
-                  className="text-2xl mb-3"
-                  style={{ fontFamily: "'Fredoka One', cursive", color }}
-                >
+                <h3 className="mb-3 text-2xl" style={{ color }}>
                   {title}
                 </h3>
-                <p className="leading-relaxed text-sm" style={{ color: '#4b5563' }}>
+                <p className="text-body text-sm leading-relaxed">
                   {desc}
                 </p>
               </div>
@@ -217,16 +193,13 @@ export default function Home() {
       </section>
 
       {/* ─── DONATION ─── */}
-      <section className="bg-white py-14 sm:py-20">
+      <section id="doacao" className="scroll-mt-16 bg-white py-14 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-14">
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl"
-              style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
-            >
+            <h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
               Faça Sua Doação
             </h2>
-            <p className="mt-3 text-lg" style={{ color: '#6b7280' }}>
+            <p className="text-muted mt-3 text-lg">
               Cada centavo transforma uma vida real 💙
             </p>
           </div>
@@ -235,8 +208,7 @@ export default function Home() {
             {/* QR Code */}
             <div className="flex flex-col items-center">
               <div
-                className="rounded-3xl p-8 shadow-sm"
-                style={{ backgroundColor: '#f0f4ff' }}
+                className="surface-muted rounded-3xl p-8 shadow-sm"
               >
                 <img
                   src={qrImg}
@@ -244,7 +216,7 @@ export default function Home() {
                   className="w-52 h-52 object-contain"
                 />
               </div>
-              <p className="mt-4 text-sm" style={{ color: '#9ca3af' }}>
+              <p className="text-subtle mt-4 text-sm">
                 Escaneie para doe via PIX
               </p>
             </div>
@@ -253,27 +225,19 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <img src={pixLogo} alt="PIX Logo" className="h-8 object-contain" />
-                <span className="text-lg font-bold" style={{ color: '#1a1a2e' }}>
+                <span className="section-title text-lg font-bold">
                   Chave PIX — CNPJ
                 </span>
               </div>
 
               <button
-                onClick={handleCopy}
-                className="w-full flex items-center justify-between px-5 py-4 rounded-2xl transition-all duration-200 text-left"
-                style={{
-                  backgroundColor: copied ? '#f0fdf4' : '#f0f4ff',
-                  border: `1.5px solid ${copied ? '#4db870' : 'transparent'}`,
-                  cursor: 'pointer',
-                }}
+                onClick={() => copyString(PIX_CNPJ)}
+                className={`pix-copy-control w-full flex items-center justify-between px-5 py-4 rounded-2xl text-left ${copied ? 'pix-copy-success' : 'pix-copy-home-default'}`}
               >
-                <span
-                  className="font-mono text-sm sm:text-lg font-bold min-w-0 truncate"
-                  style={{ color: '#1a1a2e' }}
-                >
+                <span className="font-mono min-w-0 truncate text-sm font-bold text-ong-dark sm:text-lg">
                   {PIX_CNPJ}
                 </span>
-                <div className="flex items-center gap-2 text-sm font-bold" style={{ color: copied ? '#4db870' : '#3d8fd1' }}>
+                <div className={`flex items-center gap-2 text-sm font-bold ${copied ? 'text-secondary' : 'text-primary'}`}>
                   {copied ? (
                     '✓ Copiado!'
                   ) : (
@@ -285,8 +249,12 @@ export default function Home() {
                 </div>
               </button>
 
-              <p className="mt-3 text-sm text-center" style={{ color: '#9ca3af' }}>
-                Clique para copiar a chave PIX
+              <p
+                className={`mt-3 text-center text-sm ${copyError ? 'text-red-600' : 'text-subtle'}`}
+                role="status"
+                aria-live="polite"
+              >
+                {copyError || 'Clique para copiar a chave PIX'}
               </p>
 
               <div
@@ -302,13 +270,13 @@ export default function Home() {
 
               <div className="mt-4 flex flex-col gap-3">
                 <a
-                  href="https://wa.me/5532988051075"
+                  href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-3 px-4 py-3 rounded-xl no-underline text-sm font-semibold transition-colors"
                   style={{ backgroundColor: '#f0fdf4', color: '#3a9458' }}
                 >
-                  📱 Dúvidas? Fale no WhatsApp: (32) 98805-1075
+                  📱 Dúvidas? Fale no WhatsApp: {TELEFONE_DISPLAY}
                 </a>
               </div>
             </div>
@@ -322,10 +290,7 @@ export default function Home() {
         style={{ background: 'linear-gradient(135deg, #3d8fd1 0%, #2e6fa3 100%)' }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl mb-4"
-            style={{ fontFamily: "'Fredoka One', cursive" }}
-          >
+          <h2 className="mb-4 text-3xl sm:text-4xl md:text-5xl">
             Junte-se a Esse Sonho!
           </h2>
           <p className="text-lg mb-10" style={{ color: 'rgba(255,255,255,0.75)' }}>
@@ -334,19 +299,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link
               to="/sobre"
-              className="px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold no-underline transition-all duration-200 text-center"
-              style={{ backgroundColor: '#ffffff', color: '#3d8fd1' }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#f0f4ff')}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#ffffff')}
+              className="button-outline-primary px-6 py-3 text-center font-bold no-underline sm:px-8 sm:py-4 rounded-2xl"
             >
               Conheça Nossa História
             </Link>
             <Link
               to="/contato"
-              className="px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold no-underline transition-all duration-200 text-center"
-              style={{ backgroundColor: '#f5a623', color: '#1a1a2e' }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#d4891a')}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#f5a623')}
+              className="button-accent px-6 py-3 text-center font-bold no-underline sm:px-8 sm:py-4 rounded-2xl"
             >
               Entre em Contato
             </Link>

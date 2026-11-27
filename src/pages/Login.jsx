@@ -39,16 +39,14 @@ export default function Login() {
       gradient="linear-gradient(135deg, #3d8fd1 0%, #2e6fa3 60%, #245a87 100%)"
     >
       <h2
-        className="text-2xl sm:text-3xl mb-6"
-        style={{ fontFamily: "'Fredoka One', cursive", color: '#1a1a2e' }}
+        className="section-title mb-6 text-2xl sm:text-3xl"
       >
         Bem-vindo de volta
       </h2>
 
       {error && (
         <div
-          className="rounded-2xl p-4 mb-5 text-center font-bold text-sm"
-          style={{ backgroundColor: '#fef2f2', color: '#dc2626', border: '1.5px solid rgba(239,68,68,0.3)' }}
+          className="form-error rounded-2xl p-4 mb-5 text-center text-sm font-bold"
           role="alert"
         >
           {error}
@@ -77,23 +75,20 @@ export default function Login() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 sm:py-4 rounded-xl text-white font-bold text-base transition-all duration-200 disabled:opacity-70"
-          style={{ backgroundColor: '#3d8fd1' }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#2e6fa3')}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#3d8fd1')}
+          className="button-primary w-full py-3 sm:py-4 rounded-xl font-bold text-base disabled:opacity-70"
         >
           {loading ? 'Entrando...' : 'Entrar 💙'}
         </button>
 
-        <p className="text-center text-sm" style={{ color: '#4b5563' }}>
+        <p className="text-body text-center text-sm">
           Ainda não tem conta?{' '}
-          <Link to="/registro" className="font-bold no-underline" style={{ color: '#3d8fd1' }}>
+          <Link to="/registro" className="font-bold text-primary no-underline hover:text-primary-dark">
             Registre-se
           </Link>
         </p>
 
-        <p className="text-center text-xs" style={{ color: '#9ca3af' }}>
-          <Link to="/" className="no-underline" style={{ color: '#9ca3af' }}>
+        <p className="text-subtle text-center text-xs">
+          <Link to="/" className="text-subtle no-underline hover:text-primary">
             ← Continuar sem entrar
           </Link>
         </p>

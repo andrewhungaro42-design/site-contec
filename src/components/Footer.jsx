@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom'
 import logoImg from '../assets/LogoOriginal.png'
+import { navLinks } from '../navigation'
+import {
+  INSTAGRAM_LINK,
+  PIX_CNPJ,
+  TELEFONE_DISPLAY,
+  WHATSAPP_LINK,
+} from '../linksContato'
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#1a1a2e', color: '#ffffff' }}>
+    <footer className="bg-ong-dark text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
 
@@ -11,14 +18,11 @@ export default function Footer() {
           <div className="sm:col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-3 no-underline mb-4">
               <img src={logoImg} alt="Logo" className="w-10 h-10 rounded-xl object-cover" />
-              <span
-                className="text-base font-bold text-white"
-                style={{ fontFamily: "'Fredoka One', cursive" }}
-              >
+              <span className="font-display text-base font-bold text-white">
                 Sonho de um Menino
               </span>
             </Link>
-            <p className="text-sm leading-relaxed" style={{ color: '#9ca3af' }}>
+            <p className="text-subtle text-sm leading-relaxed">
               Transformando vidas através do amor, do esporte e da solidariedade
               em Juiz de Fora, MG.
             </p>
@@ -26,26 +30,15 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4
-              className="font-bold mb-4 sm:mb-5 text-sm uppercase tracking-widest"
-              style={{ color: '#f5a623' }}
-            >
+            <h4 className="text-accent mb-4 sm:mb-5 text-sm font-bold uppercase tracking-widest">
               Páginas
             </h4>
             <ul className="flex flex-col gap-2 sm:gap-3">
-              {[
-                { to: '/', label: 'Início' },
-                { to: '/sobre', label: 'Sobre Nós' },
-                { to: '/projetos', label: 'Projetos Futuros' },
-                { to: '/contato', label: 'Contato' },
-              ].map(({ to, label }) => (
+              {navLinks.map(({ to, label }) => (
                 <li key={to}>
                   <Link
                     to={to}
-                    className="text-sm no-underline transition-colors"
-                    style={{ color: '#9ca3af' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#9ca3af')}
+                    className="footer-link text-sm no-underline"
                   >
                     {label}
                   </Link>
@@ -56,37 +49,28 @@ export default function Footer() {
 
           {/* Contato */}
           <div>
-            <h4
-              className="font-bold mb-4 sm:mb-5 text-sm uppercase tracking-widest"
-              style={{ color: '#f5a623' }}
-            >
+            <h4 className="text-accent mb-4 sm:mb-5 text-sm font-bold uppercase tracking-widest">
               Contato
             </h4>
-            <ul className="flex flex-col gap-2 sm:gap-3 text-sm" style={{ color: '#9ca3af' }}>
+            <ul className="text-subtle flex flex-col gap-2 sm:gap-3 text-sm">
               <li className="flex items-center gap-2">
                 <span>📱</span>
                 <a
-                  href="https://wa.me/5532988051075"
+                  href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noreferrer"
-                  className="no-underline transition-colors"
-                  style={{ color: '#9ca3af' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#4db870')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#9ca3af')}
+                  className="footer-link footer-link-accent no-underline"
                 >
-                  (32) 98805-1075
+                  {TELEFONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <span>📸</span>
                 <a
-                  href="https://instagram.com/sonhodeummeninoong"
+                  href={INSTAGRAM_LINK}
                   target="_blank"
                   rel="noreferrer"
-                  className="no-underline transition-colors"
-                  style={{ color: '#9ca3af' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#9ca3af')}
+                  className="footer-link no-underline"
                 >
                   @sonhodeummeninoong
                 </a>
@@ -97,18 +81,15 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span>💰</span>
-                <span className="font-mono text-xs break-all">PIX: 50.412.437/0001-00</span>
+                <span className="font-mono text-xs break-all">PIX: {PIX_CNPJ}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div
-          className="mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col items-center gap-2 sm:flex-row sm:justify-between sm:gap-3 text-xs text-center"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.08)', color: '#6b7280' }}
-        >
+        <div className="text-xs text-center text-gray-500 mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col items-center gap-2 sm:flex-row sm:justify-between sm:gap-3 border-t border-white/10">
           <span>© {new Date().getFullYear()} Sonho de um Menino — Todos os direitos reservados</span>
-          <span>Juiz de Fora, MG — CNPJ: 50.412.437/0001-00</span>
+          <span>Juiz de Fora, MG — CNPJ: {PIX_CNPJ}</span>
         </div>
       </div>
     </footer>
